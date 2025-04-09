@@ -1,0 +1,157 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #111;
+  color: white;
+  padding: 2rem;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.title {
+  font-size: 2.8rem;
+  color: #00f0ff;
+  text-align: center;
+}
+
+.details-wrapper {
+  margin-top: 1.2rem;
+  text-align: center;
+}
+
+.details {
+  font-size: 1.2rem;
+  color: orange;
+  text-align: center;
+}
+
+.subtext {
+  font-size: 1.2rem;
+  color: gold;
+  margin-top: 0.3rem;
+  text-align: center;
+}
+
+.instructions {
+  position: fixed;
+  top: 1rem;
+  right: 1.1rem;
+  background-color: rgba(238, 134, 134, 0.9); 
+  color: #000;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  z-index: 200;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  max-width: 220px;
+}
+
+
+.section {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  border-radius: 12px;
+}
+
+img {
+  width: 60px;
+  height: 60px;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+.blue {
+  background: #7dd3fc;
+  color: black;
+}
+
+.coral {
+  background: #fb7185;
+  color: black;
+}
+
+.aqua {
+  background: #5eead4;
+  color: black;
+}
+
+.purple {
+  background: #a855f7;
+  color: white;
+}
+
+.gold {
+  background: #d97706;
+  color: white;
+}
+
+#mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 100;
+  --x: 50vw;
+  --y: 50vh;
+  --radius: 150px;
+  background-color: rgba(0, 0, 0, 0.95);
+  /* -webkit-mask-image: radial-gradient(circle var(--radius) at var(--x) var(--y), transparent 0%, black 100%);
+  mask-image: radial-gradient(circle var(--radius) at var(--x) var(--y), transparent 0%, black 100%);
+  clip-path: none; */
+  transition: all 0.05s linear;
+}
+
+#mask[data-shape="circle"] {
+  -webkit-mask-image: radial-gradient(circle var(--radius) at var(--x) var(--y), transparent 0%, black 100%);
+  mask-image: radial-gradient(circle var(--radius) at var(--x) var(--y), transparent 0%, black 100%);
+  clip-path: none;
+}
+
+#mask[data-shape="cross"] {
+  clip-path: none;
+  -webkit-mask-image: 
+    linear-gradient(to right, black calc(var(--x) - var(--radius)), transparent calc(var(--x) - var(--radius)), transparent calc(var(--x) + var(--radius)), black calc(var(--x) + var(--radius))),
+    linear-gradient(to bottom, black calc(var(--y) - var(--radius)), transparent calc(var(--y) - var(--radius)), transparent calc(var(--y) + var(--radius)), black calc(var(--y) + var(--radius)));
+  mask-image: 
+    linear-gradient(to right, black calc(var(--x) - var(--radius)), transparent calc(var(--x) - var(--radius)), transparent calc(var(--x) + var(--radius)), black calc(var(--x) + var(--radius))),
+    linear-gradient(to bottom, black calc(var(--y) - var(--radius)), transparent calc(var(--y) - var(--radius)), transparent calc(var(--y) + var(--radius)), black calc(var(--y) + var(--radius)));
+  -webkit-mask-composite: intersect;
+  mask-composite: intersect;
+  background-color: rgba(0, 0, 0, 0.95);
+}
+  
+#mask[data-shape="square"] {
+  mask-image: 
+  linear-gradient(.25turn, black calc(var(--x) - var(--radius)), transparent calc(var(--x) - var(--radius)), transparent calc(var(--x) + var(--radius)), black calc(var(--x) + var(--radius))),
+  linear-gradient(.50turn, black calc(var(--y) - var(--radius)), transparent calc(var(--y) - var(--radius)), transparent calc(var(--y) + var(--radius)), black calc(var(--y) + var(--radius)));
+}
+
+
+body.revealing .section {
+  opacity: 0.1;
+  transition: opacity 0.3s ease;
+}
+
+body.revealing .section.reveal {
+  opacity: 1 !important;
+}
+
+body.revealing #mask {
+  display: none;
+}
